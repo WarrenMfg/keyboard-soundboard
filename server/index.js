@@ -22,8 +22,10 @@ app.get('/vinyl.jpg', (req, res) => {
 });
 
 app.get('/sounds/*', (req, res) => {
-  const sound = req.url.split('/')[2];
-  const file = fs.createReadStream(path.resolve(__dirname, `../sounds/${sound}`));
+  const url = req.url.split('/');
+  const folder = url[2];
+  const sound = url[3];
+  const file = fs.createReadStream(path.resolve(__dirname, `../sounds/${folder}/${sound}`));
   file.pipe(res);
 });
 
