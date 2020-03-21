@@ -24,7 +24,7 @@ class App extends React.Component {
     }
     div.classList.add('playing');
     
-    // for Audio
+    // for audio
     const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
     if (!audio) {
       return;
