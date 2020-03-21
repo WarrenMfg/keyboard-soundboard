@@ -1,3 +1,60 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+html {
+  background-color: rgba(0,0,0,0.33);
+}
+
 body {
   background-image: url('/vinyl.jpg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: top;
+  height: 100vh;
+  margin: 0;
+  background-color: white;
+}
+
+.keys {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.33);
+}
+
+.key {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 6vw;
+  height: 6vw;
+  background-color: white;
+  margin: 0 1vw;
+  padding: .25vw;
+  border: .5vw solid black;
+  border-radius: .5em;
+  box-shadow: 0 0 1vw .25vw inset darkgray, 
+              0 0 .75vw -.25vw rgb(168, 168, 168);
+  transition: all .07s ease;
+}
+
+.playing {
+  border: .5vw solid yellow;
+  box-shadow: 0 0 1vw .25vw inset darkgray, 
+              0 0 .75vw .25vw yellow;
+  transform: scale(1.1);
+}
+
+kbd {
+  font-family: monospace;
+  font-size: 3.5vw;
+  margin: 0;
+}
+
+span {
+  font-size: 1.5vw;
+  margin: 0;
 }

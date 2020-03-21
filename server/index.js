@@ -13,7 +13,7 @@ app.use(express.json());
 
 
 // STATIC
-app.use('/favicon', express.static(path.resolve(__dirname, '../favicon')));
+app.use('/favicon', express.static(path.resolve(__dirname, '../favicon'), { maxAge: 86400000}));
 
 app.get('/vinyl.jpg', (req, res) => {
   const image = fs.createReadStream(path.resolve(__dirname, '../client/vinyl.jpg'));

@@ -9,11 +9,19 @@ class App extends React.Component {
 
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeyDown);
+    document.querySelectorAll('.key').forEach((el) => {
+      el.addEventListener('transitionend', () => {
+        el.classList.remove('playing');
+      });
+    });
   }
 
   handleKeyDown(e) {
     // for CSS
     const div = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+    if (!div) {
+      return;
+    }
     div.classList.add('playing');
     
     // for Audio
@@ -23,8 +31,6 @@ class App extends React.Component {
     }
     audio.currentTime = 0;
     audio.play();
-
-    // add transitionend eventListener
   }
 
   render() {
