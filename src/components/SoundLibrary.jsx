@@ -28,15 +28,15 @@ class SoundLibrary extends React.Component {
           break;
         case 'animals':
           this.props.changeLibrary('animals', {
-            key65: 'sounds/drums/clap.wav',
-            key83: 'sounds/drums/hihat.wav',
-            key68: 'sounds/drums/kick.wav',
-            key70: 'sounds/drums/openhat.wav',
-            key71: 'sounds/drums/boom.wav',
-            key72: 'sounds/drums/ride.wav',
-            key74: 'sounds/drums/snare.wav',
-            key75: 'sounds/drums/tom.wav',
-            key76: 'sounds/drums/tink.wav'
+            key65: 'sounds/animals/cat.wav',
+            key83: 'sounds/animals/chicken.wav',
+            key68: 'sounds/animals/cow.wav',
+            key70: 'sounds/animals/dog.wav',
+            key71: 'sounds/animals/frog.wav',
+            key72: 'sounds/animals/horse.wav',
+            key74: 'sounds/animals/lion.wav',
+            key75: 'sounds/animals/monkey.wav',
+            key76: 'sounds/animals/wolf.wav'
           });
           break;
       }

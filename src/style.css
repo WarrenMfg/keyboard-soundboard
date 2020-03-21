@@ -1,5 +1,6 @@
 * {
   font-family: Arial, Helvetica, sans-serif;
+  outline: none;
 }
 html {
   background-color: rgba(0,0,0,0.33);

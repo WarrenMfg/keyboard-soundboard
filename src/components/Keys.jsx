@@ -26,7 +26,7 @@ class Keys extends React.Component {
     const sounds = Object.keys(this.props.sounds);
     sounds.forEach((sound) => {
       document.querySelector(`.key[data-key="${sound.split('key')[1]}"]`).children[1].innerHTML = this.props.sounds[sound].split('/')[2].split('.')[0];
-      // console.log(this.props.sounds[sound].split('/')[2].split('.')[0]);
+      console.log(this.props.sounds[sound].split('/')[2].split('.')[0]);
     });
   }
 
