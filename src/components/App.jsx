@@ -2,31 +2,79 @@ import React from 'react';
 import Keys from './Keys.jsx';
 import Audio from './Audio.jsx';
 import SoundLibrary from './SoundLibrary.jsx';
+import KEYS from '../util/keys.js';
 import '../style.css';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      soundLibrary: 'drums',
+      libraries: [],
+      library: 'drums', // default
       sounds: {
-        key65: 'sounds/drums/clap.wav',
-        key83: 'sounds/drums/hihat.wav',
-        key68: 'sounds/drums/kick.wav',
-        key70: 'sounds/drums/openhat.wav',
-        key71: 'sounds/drums/boom.wav',
-        key72: 'sounds/drums/ride.wav',
-        key74: 'sounds/drums/snare.wav',
-        key75: 'sounds/drums/tom.wav',
-        key76: 'sounds/drums/tink.wav'
+        key65: '',
+        key83: '',
+        key68: '',
+        key70: '',
+        key71: '',
+        key72: '',
+        key74: '',
+        key75: '',
+        key76: ''
       }
     }
 
     this.changeLibrary = this.changeLibrary.bind(this);
   }
 
-  changeLibrary(soundLibrary, sounds) {
-    this.setState({ soundLibrary, sounds });
+  componentDidMount() {
+    fetch('/default')
+      .then((data) => data.json())
+      .then((data) => {
+        let { libraries, soundFiles } = data;
+        libraries.sort();
+        soundFiles.sort();
+        soundFiles = soundFiles.map((soundFile) => `/libraries/${this.state.library}/${soundFile}`);
+
+        const keys = KEYS;
+        const sounds = {};
+        keys.forEach((key, i) => {
+          sounds[`key${key}`] = soundFiles[i];
+        });
+        this.setState({ libraries, sounds });
+      })
+      .catch((err) => console.log('error at App.jsx componentDidMount', err));
+  }
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (prevState.sounds !== this.state.sounds) {
+  //     this.changeLibrary(this.state.library);
+  //   }
+  // }
+
+  changeLibrary(library) {
+    fetch(`/library/${library}`)
+      .then((data) => data.json())
+      .then((data) => {
+        let { soundFiles } = data;
+        const keys = KEYS;
+        soundFiles.sort();
+        soundFiles = soundFiles.map((soundFile) => `/libraries/${library}/${soundFile}`);
+
+        const sounds = {};
+        keys.forEach((key, i) => {
+          sounds[`key${key}`] = soundFiles[i];
+        });
+        this.setState({ library, sounds });
+      })
+      .catch((err) => console.log('error App.jsx changeLibrary', err));
+
+
+
+
+
+
+    // this.setState({ library, sounds });
   }
 
   render() {
@@ -34,7 +82,7 @@ class App extends React.Component {
       <div>
         <Keys sounds={this.state.sounds} />
         <Audio sounds={this.state.sounds} />
-        <SoundLibrary changeLibrary={this.changeLibrary} />
+        <SoundLibrary libraries={this.state.libraries} sounds={this.state.sounds} changeLibrary={this.changeLibrary} />
       </div>
     );
   }

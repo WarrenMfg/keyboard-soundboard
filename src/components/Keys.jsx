@@ -1,4 +1,5 @@
 import React from 'react';
+import KEYS from '../util/keys.js';
 
 class Keys extends React.Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class Keys extends React.Component {
         el.classList.remove('playing');
       });
     });
-    this.updateSpanInnerHTML();
+    // this.updateSpanInnerHTML();
   }
 
   componentDidUpdate(prevProps) {
@@ -24,10 +25,14 @@ class Keys extends React.Component {
 
   updateSpanInnerHTML() {
     const sounds = Object.keys(this.props.sounds);
-    sounds.forEach((sound) => {
-      document.querySelector(`.key[data-key="${sound.split('key')[1]}"]`).children[1].innerHTML = this.props.sounds[sound].split('/')[2].split('.')[0];
-      console.log(this.props.sounds[sound].split('/')[2].split('.')[0]);
-    });
+    
+    if (sounds.length > 0) {
+      const keys = KEYS;
+
+      keys.forEach((key) => {
+        document.querySelector(`.key[data-key="${key}"]`).children[1].innerHTML = this.props.sounds[`key${key}`].split('/')[3].split('.')[0];
+      });
+    }
   }
 
   handleKeyDown(e) {
