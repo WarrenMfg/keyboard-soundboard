@@ -41,9 +41,10 @@ app.get('/libraries/*', (req, res) => { // for script:src
   const url = req.url.split('/');
   const folder = url[2];
   const sound = url[3];
-  const file = fs.createReadStream(path.resolve(__dirname, `../libraries/${folder}/${sound}`));
-  res.set({ 'Cache-Control': 'max-age=86400', 'Content-Range': 'bytes */*' });
-  file.pipe(res);
+  // const file = fs.createReadStream(path.resolve(__dirname, `../libraries/${folder}/${sound}`));
+  res.set({ 'Cache-Control': 'max-age=86400' });
+  // file.pipe(res);
+  res.sendFile(path.resolve(__dirname, `../libraries/${folder}/${sound}`));
 });
 
 
