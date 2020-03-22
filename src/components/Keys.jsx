@@ -14,7 +14,6 @@ class Keys extends React.Component {
         el.classList.remove('playing');
       });
     });
-    // this.updateSpanInnerHTML();
   }
 
   componentDidUpdate(prevProps) {

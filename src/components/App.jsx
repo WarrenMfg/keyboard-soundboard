@@ -46,12 +46,6 @@ class App extends React.Component {
       .catch((err) => console.log('error at App.jsx componentDidMount', err));
   }
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (prevState.sounds !== this.state.sounds) {
-  //     this.changeLibrary(this.state.library);
-  //   }
-  // }
-
   changeLibrary(library) {
     fetch(`/library/${library}`)
       .then((data) => data.json())
@@ -68,13 +62,6 @@ class App extends React.Component {
         this.setState({ library, sounds });
       })
       .catch((err) => console.log('error App.jsx changeLibrary', err));
-
-
-
-
-
-
-    // this.setState({ library, sounds });
   }
 
   render() {
