@@ -84,12 +84,12 @@ button {
   font-size: 1.5vw;
   box-shadow: 0 0 1vw .25vw inset darkgray, 
               0 0 .75vw -.25vw rgb(168, 168, 168);
+  cursor: pointer;
   transition: all 0.2s ease;
 }
 
-button:hover {
+button:hover, .active {
   color: white;
   background-color: black;
   box-shadow: 0 0 2vw black;
-  cursor: pointer;
 }

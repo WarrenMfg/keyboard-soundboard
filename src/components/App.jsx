@@ -69,7 +69,7 @@ class App extends React.Component {
       <div>
         <Keys sounds={this.state.sounds} />
         <Audio sounds={this.state.sounds} />
-        <SoundLibrary libraries={this.state.libraries} sounds={this.state.sounds} changeLibrary={this.changeLibrary} />
+        <SoundLibrary library={this.state.library} libraries={this.state.libraries} sounds={this.state.sounds} changeLibrary={this.changeLibrary} />
       </div>
     );
   }
